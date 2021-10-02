@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+}
+
+:root {
+  /* CSS HEX */
+  --black: #000000ff;
+  --rich-black-fogra-39: #111111ff;
+  --eerie-black: #212121ff;
+  --jet: #292929ff;
+  --jet-2: #303030ff;
+  --jet-3: #393939ff;
+  --onyx: #424242ff;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.header {
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  border: 1px solid black;
+  color: white;
+  background-color: var(--rich-black-fogra-39);
+}
+
+.header h1 {
+  font-size: 3rem;
+}
+
+.header p {
+  font-size: 2rem;
+}
+
+#main-element {
+  background-color: var(--onyx);
+}
