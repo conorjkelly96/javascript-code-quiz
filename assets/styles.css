@@ -50,7 +50,6 @@ body {
   align-items: center;
   flex-wrap: wrap;
   text-align: center;
-
   color: black;
   background-color: var(--cyber-yellow);
 }
