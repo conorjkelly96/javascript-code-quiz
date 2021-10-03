@@ -46,7 +46,7 @@ const startTimer = function () {
   const timerTick = function () {
     if (countdownClock <= 0) {
       clearInterval(timer);
-      renderGameOver();
+      renderQuizOver();
     } else {
       countdownClock -= 1;
       clockElement.textContent = "Time Remaining: " + countdownClock;
@@ -59,8 +59,6 @@ const startTimer = function () {
 const renderQuestions = function () {
   // Render Questions
 };
-
-const renderQuestions = function () {};
 
 // Start Quiz - remove elements, start timer and render question
 const startQuiz = function () {
