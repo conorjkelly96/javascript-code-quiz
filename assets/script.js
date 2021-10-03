@@ -16,8 +16,25 @@ const renderTimer = function () {
 };
 
 const renderQuizOver = function () {
-  const gameOverDiv = document.createElement("div");
-  gameOverDiv.setAttribute("class", "");
+  // creating p tag
+  const gameOverText = document.createElement("p");
+  gameOverText.setAttribute("class", "");
+
+  // creating div1 and appending child
+  const gameOverDiv1 = document.createElement("div");
+  gameOverDiv1.appendChild(gameOverText);
+
+  // creating button
+  const retryButton = document.createElement("button");
+  retryButton.setAttribute("id", "startbtn");
+
+  // creating div2 and appending child
+  const gameOverDiv2 = document.createElement("div");
+  gameOverDiv2.appendChild(retryButton);
+
+  // final container and appending children
+  const gameOverMainDiv = document.createElement("div");
+  gameOverDiv2.appendChild(gameOverDiv1, gameOverDiv2);
 };
 
 const startTimer = function () {
@@ -26,12 +43,12 @@ const startTimer = function () {
   const timerTick = function () {
     if (countdownClock <= 0) {
       clearInterval(timer);
-
-      const quizContainerDiv = document.querySelector("#quiz-container");
-      quizContainerDiv.remove();
-
-      render;
+      renderGameOver();
+    } else {
+      countdownClock -= 1;
+      timerElement.textContent = "Time Remaining: " + countdownClock;
     }
+    const clock = setInterval(countdownClock, 1000);
   };
 };
 
