@@ -44,7 +44,7 @@ body {
   background-color: var(--aureolin);
 }
 
-.start-quiz {
+.quiz {
   padding: 20px;
   margin: 10px;
   display: flex;
@@ -56,8 +56,13 @@ body {
   background-color: var(--cyber-yellow);
 }
 
-.start-quiz h2 {
+.quiz h2 {
   font-size: 2rem;
+}
+
+.quiz p {
+  font-size: 2rem;
+  margin: 10px;
 }
 
 .start-button-div {
