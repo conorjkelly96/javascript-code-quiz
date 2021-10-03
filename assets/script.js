@@ -4,9 +4,10 @@ const startQuizHeader = document.getElementById("start-quiz-header");
 const startQuizButtonDiv = document.getElementById("start-button-div");
 const startQuizButton = document.getElementById("startbtn");
 const headerContainer = document.getElementById("header");
+const mainElement = document.getElementById("main-element");
 
 // global countdown starting value
-let countdownClock = 60;
+let countdownClock = 2;
 
 // Render Timer Function
 const renderTimer = function () {
@@ -20,7 +21,8 @@ const renderTimer = function () {
 // Render Quiz Over - Only when the user completes the quiz
 const renderQuizOver = function () {
   // creating p tag
-  const gameOverText = document.createElement("p");
+  const gameOverText = (document.createElement("p").textContent =
+    "You failed to complete the quiz in time - check the console");
 
   // creating div1 and appending child
   const gameOverDiv1 = document.createElement("div");
@@ -34,26 +36,29 @@ const renderQuizOver = function () {
   const gameOverDiv2 = document.createElement("div");
   gameOverDiv2.appendChild(retryButton);
 
-  // final container and appending children
+  // final container, appending children & append to main
   const gameOverMainDiv = document.createElement("div");
-  gameOverDiv2.append(gameOverDiv1, gameOverDiv2);
+  gameOverMainDiv.appendChild(gameOverDiv1);
+  gameOverMainDiv.appendChild(gameOverDiv2);
+  mainElement.appendChild(gameOverMainDiv);
 };
 
 // starting countdown when game begins
 const startTimer = function () {
   const clockElement = document.querySelector("#clock");
+  console.log(clockElement);
 
   const timerTick = function () {
     if (countdownClock <= 0) {
-      clearInterval(timer);
+      console.log("game over", countdownClock);
+      clearInterval();
       renderQuizOver();
     } else {
       countdownClock -= 1;
       clockElement.textContent = "Time Remaining: " + countdownClock;
     }
-    const clock = setInterval(timerTick, 1000);
-    console.log(clock);
   };
+  const clock = setInterval(timerTick, 1000);
 };
 
 const renderQuestions = function () {
