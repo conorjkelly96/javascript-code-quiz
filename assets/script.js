@@ -48,7 +48,8 @@ const startTimer = function () {
       countdownClock -= 1;
       timerElement.textContent = "Time Remaining: " + countdownClock;
     }
-    const clock = setInterval(countdownClock, 1000);
+    const clock = setInterval(timerTick, 1000);
+    console.log(clock);
   };
 };
 
