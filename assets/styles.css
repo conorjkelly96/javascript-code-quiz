@@ -34,8 +34,10 @@ html {
   font-size: 3rem;
 }
 
-.header p {
+.header-content {
   font-size: 2rem;
+
+  margin: 10px;
 }
 
 body {
@@ -63,7 +65,7 @@ body {
   padding: 10px;
 }
 
-#start-button {
+#startbtn {
   color: black;
   border-radius: 10px;
   padding: 18px;
@@ -76,6 +78,6 @@ body {
   -moz-transition: ease-out 0.4s;
   transition: ease-out 0.4s;
 }
-#start-button:hover {
+#startbtn:hover {
   box-shadow: inset 400px 0 0 0 var(--heliotrope);
 }
