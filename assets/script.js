@@ -4,21 +4,23 @@ const startQuizHeader = document.getElementById("start-quiz-header");
 const startQuizButtonDiv = document.getElementById("start-button-div");
 const startQuizButton = document.getElementById("startbtn");
 const headerContainer = document.getElementById("header");
-const timerElement = document.createElement("div");
 
+// global countdown starting value
 let countdownClock = 60;
 
+// Render Timer Function
 const renderTimer = function () {
+  const timerElement = document.createElement("div");
   timerElement.textContent = "Time Remaining " + countdownClock;
   timerElement.setAttribute("class", "header-content");
   timerElement.setAttribute("id", "clock");
   headerContainer.appendChild(timerElement);
 };
 
+// Render Quiz Over - Only when the user completes the quiz
 const renderQuizOver = function () {
   // creating p tag
   const gameOverText = document.createElement("p");
-  gameOverText.setAttribute("class", "");
 
   // creating div1 and appending child
   const gameOverDiv1 = document.createElement("div");
@@ -34,11 +36,12 @@ const renderQuizOver = function () {
 
   // final container and appending children
   const gameOverMainDiv = document.createElement("div");
-  gameOverDiv2.appendChild(gameOverDiv1, gameOverDiv2);
+  gameOverDiv2.append(gameOverDiv1, gameOverDiv2);
 };
 
+// starting countdown when game begins
 const startTimer = function () {
-  const timerElement = document.querySelector("#clock");
+  const clockElement = document.querySelector("#clock");
 
   const timerTick = function () {
     if (countdownClock <= 0) {
@@ -46,11 +49,15 @@ const startTimer = function () {
       renderGameOver();
     } else {
       countdownClock -= 1;
-      timerElement.textContent = "Time Remaining: " + countdownClock;
+      clockElement.textContent = "Time Remaining: " + countdownClock;
     }
     const clock = setInterval(timerTick, 1000);
     console.log(clock);
   };
+};
+
+const renderQuestions = function () {
+  // Render Questions
 };
 
 const renderQuestions = function () {};
