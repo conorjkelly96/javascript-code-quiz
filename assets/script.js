@@ -162,6 +162,8 @@ const startTimer = function () {
   const timerTick = function () {
     if (countdownClock <= 0) {
       clearInterval(clock);
+      // const questionsContainer = document.getElementById("#question-element");
+      // questionsContainer.remove();
       renderQuizOver();
     } else {
       countdownClock -= 1;
