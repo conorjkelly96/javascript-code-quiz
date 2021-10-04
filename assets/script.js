@@ -21,8 +21,10 @@ const renderTimer = function () {
 // Render Quiz Over - Only when the user completes the quiz
 const renderQuizOver = function () {
   // creating p tag
-  const gameOverText = (document.createElement("p").textContent =
-    "You failed to complete the quiz in time - check the console");
+  const gameOverText = document.createElement("p");
+  gameOverText.setAttribute("class", "game-over-text");
+  gameOverText.textContent =
+    "You failed to complete the quiz in time - check the console";
 
   // creating div1 and appending child
   const gameOverDiv1 = document.createElement("div");
@@ -31,6 +33,7 @@ const renderQuizOver = function () {
   // creating button
   const retryButton = document.createElement("button");
   retryButton.setAttribute("id", "startbtn");
+  retryButton.textContent = "Back to main";
 
   // creating div2 and appending child
   const gameOverDiv2 = document.createElement("div");
@@ -38,20 +41,25 @@ const renderQuizOver = function () {
 
   // final container, appending children & append to main
   const gameOverMainDiv = document.createElement("div");
+  gameOverMainDiv.setAttribute("class", "quiz");
   gameOverMainDiv.appendChild(gameOverDiv1);
   gameOverMainDiv.appendChild(gameOverDiv2);
   mainElement.appendChild(gameOverMainDiv);
+  console.log("You can do better than that, surely? 🤣🤣🤣");
+
+  const refreshPage = function () {
+    window.location.reload();
+  };
+  retryButton.addEventListener("click", refreshPage);
 };
 
 // starting countdown when game begins
 const startTimer = function () {
   const clockElement = document.querySelector("#clock");
-  console.log(clockElement);
 
   const timerTick = function () {
     if (countdownClock <= 0) {
-      console.log("game over", countdownClock);
-      clearInterval();
+      clearInterval(clock);
       renderQuizOver();
     } else {
       countdownClock -= 1;
