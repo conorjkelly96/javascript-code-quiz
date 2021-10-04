@@ -97,22 +97,21 @@ const myQuestions = [
     answers: {
       a: "Node.js",
       b: "TypeScript",
-      c: "npm"
-      d: "CoffeScript"
+      c: "npm",
+      d: "CoffeScript",
     },
-    correctAnswer: "c"
+    correctAnswer: "c",
   },
   {
-    {
-      question: "Which tool can you use to ensure code quality?",
-      answers: {
-        a: "Angular",
-        b: "jQuery",
-        c: "RequireJS",
-        d: "ESLint"
-      },
-      correctAnswer: "d"
-    }
+    question: "Which tool can you use to ensure code quality?",
+    answers: {
+      a: "Angular",
+      b: "jQuery",
+      c: "RequireJS",
+      d: "ESLint",
+    },
+    correctAnswer: "d",
+  },
 ];
 
 // Render Timer Function
@@ -174,7 +173,43 @@ const startTimer = function () {
 
 // Render Questions
 const renderQuestions = function () {
-  
+  const questionsContainer = document.createElement("div");
+  questionsContainer.setAttribute("class", "question-element");
+  questionsContainer.setAttribute("id", "question-element");
+  console.log(questionsContainer);
+
+  const questionsDiv = document.createElement("div");
+  questionsDiv.setAttribute("class", "question-div");
+
+  // for (const question in myQuestions) {
+  //   if (myQuestions.hasOwnProperty(question)) {
+  //     const questionString = document.createElement("p");
+  //     const answerButton = document.createElement("button");
+  //     questionString.setAttribute("class", "question-string");
+  //     questionString.textContent = "Checking If It works";
+  //     questionsDiv.append(questionString, answerButton);
+
+  //     console.log(question + " -> " + myQuestions[question]);
+  //   }
+  // }
+
+  for (let i = 0; i < myQuestions.length; i++) {
+    console.log("Only if a question is iterated", myQuestions[i]);
+
+    // const questionString = document.createElement("p");
+    // console.log(questionString);
+    // const answerButton = document.createElement("button");
+    // console.log(answerButton);
+
+    // questionString.setAttribute("class", "question-string");
+    // questionString.textContent = "Checking If It works";
+
+    // questionsDiv.append(questionString, answerButton);
+  }
+
+  // Appending game containers to main element - leave last
+  questionsContainer.appendChild(questionsDiv);
+  mainElement.appendChild(questionsContainer);
 };
 
 // Start Quiz - remove elements, start timer and render question
