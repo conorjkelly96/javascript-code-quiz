@@ -1,4 +1,4 @@
-// Declaring Element Variables Globally
+// Declaring Element Variables Globally to be used in functions
 const startQuizDiv = document.getElementById("start-quiz-div");
 const startQuizHeader = document.getElementById("start-quiz-header");
 const startQuizButtonDiv = document.getElementById("start-button-div");
@@ -6,40 +6,113 @@ const startQuizButton = document.getElementById("startbtn");
 const headerContainer = document.getElementById("header");
 const mainElement = document.getElementById("main-element");
 
-// global countdown starting value
+// countdown starting value
 let countdownClock = 2;
 
-// Questions globally
+// Questions Object Array
 const myQuestions = [
   {
     question: "Inside which HTML element do we put the JavaScript?",
     answers: {
-      a: "<script>"
-      b: "<js>"
-      c: "<javascript>"
-      d: "<code>"
+      a: "<script>",
+      b: "<js>",
+      c: "<javascript>",
+      d: "<code>",
     },
     correctAnswer: "a",
+  },
+  {
+    question: "Where is the correct place to insert a JavaScript?",
+    answers: {
+      a: "<head>",
+      b: "<body>",
+      c: "<footer>",
+      d: "<section>",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Founder Brendan Eich created JavaScript in:",
+    answers: {
+      a: "10 hours",
+      b: "10 days",
+      c: "10 weeks",
+      d: "10 months",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "To link external scripts, which syntax is correct?",
+    answers: {
+      a: "src=",
+      b: "href=",
+      c: "link=",
+      d: "script=",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question:
+      "I want to promt the user to input their name. Which syntax is correct?",
+    answers: {
+      a: "alertBox()",
+      b: "msg()",
+      c: "prompt()",
+      d: "addEventListener.onClick()",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "How do you express a function in JavaScript",
+    answers: {
+      a: "const myFunction = Function ()",
+      b: "var myFunction {function} =",
+      c: "let myFunction = function []",
+      d: "case function.Myfunction()",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question: "JavaScript Objects Properties can contain",
+    answers: {
+      a: "Primitive Values",
+      b: "Objects",
+      c: "Functions",
+      d: "All of the above",
+    },
+    correctAnswer: "d",
+  },
+  {
+    question: "The '%' operator in JavaScript is known as: ",
+    answers: {
+      a: "Exponentiation",
+      b: "Division",
+      c: "Modulus",
+      d: "Decrement",
+    },
+    correctAnswer: "c",
   },
   {
     question: "Which one of these is a JavaScript package manager?",
     answers: {
       a: "Node.js",
       b: "TypeScript",
-      c: "npm",
+      c: "npm"
+      d: "CoffeScript"
     },
-    correctAnswer: "c",
+    correctAnswer: "c"
   },
   {
-    question: "Which tool can you use to ensure code quality?",
-    answers: {
-      a: "Angular",
-      b: "jQuery",
-      c: "RequireJS",
-      d: "ESLint",
-    },
-    correctAnswer: "d",
-  },
+    {
+      question: "Which tool can you use to ensure code quality?",
+      answers: {
+        a: "Angular",
+        b: "jQuery",
+        c: "RequireJS",
+        d: "ESLint"
+      },
+      correctAnswer: "d"
+    }
 ];
 
 // Render Timer Function
@@ -59,20 +132,16 @@ const renderQuizOver = function () {
   gameOverText.textContent =
     "You failed to complete the quiz in time - check the console 👀";
 
-  // creating div1 and appending child
   const gameOverDiv1 = document.createElement("div");
   gameOverDiv1.appendChild(gameOverText);
 
-  // creating button
   const retryButton = document.createElement("button");
   retryButton.setAttribute("id", "startbtn");
   retryButton.textContent = "Back to main";
 
-  // creating div2 and appending child
   const gameOverDiv2 = document.createElement("div");
   gameOverDiv2.appendChild(retryButton);
 
-  // final container, appending children & append to main
   const gameOverMainDiv = document.createElement("div");
   gameOverMainDiv.setAttribute("class", "quiz");
   gameOverMainDiv.appendChild(gameOverDiv1);
@@ -84,7 +153,6 @@ const renderQuizOver = function () {
   const refreshPage = function () {
     window.location.reload();
   };
-
   retryButton.addEventListener("click", refreshPage);
 };
 
@@ -105,7 +173,9 @@ const startTimer = function () {
 };
 
 // Render Questions
-const renderQuestions = function () {};
+const renderQuestions = function () {
+  
+};
 
 // Start Quiz - remove elements, start timer and render question
 const startQuiz = function () {
