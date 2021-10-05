@@ -7,7 +7,7 @@ const headerContainer = document.getElementById("header");
 const mainElement = document.getElementById("main-element");
 
 // countdown starting value
-let countdownClock = 2;
+let countdownClock = 60;
 
 // Questions Object Array
 const myQuestions = [
@@ -176,7 +176,9 @@ const startTimer = function () {
 // Render Questions
 const renderQuestions = function () {
   const answerButton = document.createElement("button");
+  answerButton.setAttribute("id", "answer-button");
   answerButton.textContent = "testing Button";
+  console.log(answerButton);
 
   const questionString = document.createElement("p");
   questionString.setAttribute("class", "question-string");
@@ -206,3 +208,10 @@ const startQuiz = function () {
 };
 
 startQuizButton.addEventListener("click", startQuiz);
+console.log(startQuizButton);
+
+const answerButton = document.getElementById("answer-button");
+console.log(answerButton);
+
+// answerButton.addEventListener("click", renderQuestions);
+// console.log(answerButton, "click");
