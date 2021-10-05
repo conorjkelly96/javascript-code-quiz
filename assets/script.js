@@ -183,18 +183,8 @@ const renderQuestions = function () {
   const questionsDiv = document.createElement("div");
   questionsDiv.setAttribute("class", "question-div");
 
-  // for (const question in myQuestions) {
-  //   if (myQuestions.hasOwnProperty(question)) {
-  //     const questionString = document.createElement("p");
-  //     const answerButton = document.createElement("button");
-  //     questionString.setAttribute("class", "question-string");
-  //     questionString.textContent = "Checking If It works";
-  //     questionsDiv.append(questionString, answerButton);
-
-  //     console.log(question + " -> " + myQuestions[question]);
-  //   }
-  // }
-
+  //  Should this even go in here? I am not trying to create all elements when the renderQuestions function is created
+  // - do i need to split this function into another function and all it here?
   for (let i = 0; i < myQuestions.length; i++) {
     console.log("Only if a question is iterated", myQuestions[i]);
 
