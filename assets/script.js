@@ -162,8 +162,8 @@ const startTimer = function () {
   const timerTick = function () {
     if (countdownClock <= 0) {
       clearInterval(clock);
-      // const questionsContainer = document.getElementById("#question-element");
-      // questionsContainer.remove();
+      const questionsContainer = document.getElementById("question-element");
+      questionsContainer.remove();
       renderQuizOver();
     } else {
       countdownClock -= 1;
@@ -175,31 +175,21 @@ const startTimer = function () {
 
 // Render Questions
 const renderQuestions = function () {
-  const questionsContainer = document.createElement("div");
-  questionsContainer.setAttribute("class", "question-element");
-  questionsContainer.setAttribute("id", "question-element");
-  console.log(questionsContainer);
+  const answerButton = document.createElement("button");
+  answerButton.textContent = "testing Button";
+
+  const questionString = document.createElement("p");
+  questionString.setAttribute("class", "question-string");
+  questionString.textContent = "Checking If It works";
 
   const questionsDiv = document.createElement("div");
   questionsDiv.setAttribute("class", "question-div");
 
-  //  Should this even go in here? I am not trying to create all elements when the renderQuestions function is created
-  // - do i need to split this function into another function and all it here?
-  for (let i = 0; i < myQuestions.length; i++) {
-    console.log("Only if a question is iterated", myQuestions[i]);
+  const questionsContainer = document.createElement("div");
+  questionsContainer.setAttribute("id", "question-element");
+  questionsContainer.setAttribute("class", "question-element");
 
-    // const questionString = document.createElement("p");
-    // console.log(questionString);
-    // const answerButton = document.createElement("button");
-    // console.log(answerButton);
-
-    // questionString.setAttribute("class", "question-string");
-    // questionString.textContent = "Checking If It works";
-
-    // questionsDiv.append(questionString, answerButton);
-  }
-
-  // Appending game containers to main element - leave last
+  questionsDiv.append(questionString, answerButton);
   questionsContainer.appendChild(questionsDiv);
   mainElement.appendChild(questionsContainer);
 };
