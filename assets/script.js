@@ -13,104 +13,60 @@ let countdownClock = 3;
 const myQuestions = [
   {
     question: "Inside which HTML element do we put the JavaScript?",
-    answers: {
-      a: "<script>",
-      b: "<js>",
-      c: "<javascript>",
-      d: "<code>",
-    },
-    correctAnswer: "a",
+    answers: ["<script>", "<js>", "<javascript>", "<code>"],
+    correctAnswer: "<script>",
   },
   {
     question: "Where is the correct place to insert a JavaScript?",
-    answers: {
-      a: "<head>",
-      b: "<body>",
-      c: "<footer>",
-      d: "<section>",
-    },
-    correctAnswer: "b",
+    answers: ["<head>", "<body>", "<footer>", "<section>"],
+    correctAnswer: "<body>",
   },
   {
     question: "Founder Brendan Eich created JavaScript in:",
-    answers: {
-      a: "10 hours",
-      b: "10 days",
-      c: "10 weeks",
-      d: "10 months",
-    },
+    answers: ["10 hours", "10 days", "10 weeks", "10 months"],
     correctAnswer: "b",
   },
   {
     question: "To link external scripts, which syntax is correct?",
-    answers: {
-      a: "src=",
-      b: "href=",
-      c: "link=",
-      d: "script=",
-    },
-    correctAnswer: "a",
+    answers: ["src=", "href=", "link=", "script="],
+    correctAnswer: "src=",
   },
   {
     question:
-      "I want to promt the user to input their name. Which syntax is correct?",
-    answers: {
-      a: "alertBox()",
-      b: "msg()",
-      c: "prompt()",
-      d: "addEventListener.onClick()",
-    },
+      "I want to prompt the user to input their name. Which syntax is correct?",
+    answers: ["alertBox()", "msg()", "prompt()", "addEventListener.onClick()"],
     correctAnswer: "c",
   },
   {
     question: "How do you express a function in JavaScript",
-    answers: {
-      a: "const myFunction = Function ()",
-      b: "var myFunction {function} =",
-      c: "let myFunction = function []",
-      d: "case function.Myfunction()",
-    },
-    correctAnswer: "a",
+    answers: [
+      "const myFunction = Function ()",
+      "var myFunction {function} =",
+      "let myFunction = function []",
+      "case function.Myfunction()",
+    ],
+
+    correctAnswer: "const myFunction = Function ()",
   },
   {
     question: "JavaScript Objects Properties can contain",
-    answers: {
-      a: "Primitive Values",
-      b: "Objects",
-      c: "Functions",
-      d: "All of the above",
-    },
-    correctAnswer: "d",
+    answers: ["Primitive Values", "Objects", "Functions", "All of the above"],
+    correctAnswer: "All of the above",
   },
   {
     question: "The '%' operator in JavaScript is known as: ",
-    answers: {
-      a: "Exponentiation",
-      b: "Division",
-      c: "Modulus",
-      d: "Decrement",
-    },
-    correctAnswer: "c",
+    answers: ["Exponentiation", "Division", "Modulus", "Decrement"],
+    correctAnswer: "Modulus",
   },
   {
     question: "Which one of these is a JavaScript package manager?",
-    answers: {
-      a: "Node.js",
-      b: "TypeScript",
-      c: "npm",
-      d: "CoffeScript",
-    },
-    correctAnswer: "c",
+    answers: ["Node.js", "TypeScript", "npm", "CoffeeScript"],
+    correctAnswer: "npm",
   },
   {
     question: "Which tool can you use to ensure code quality?",
-    answers: {
-      a: "Angular",
-      b: "jQuery",
-      c: "RequireJS",
-      d: "ESLint",
-    },
-    correctAnswer: "d",
+    answers: ["Angular", "jQuery", "RequireJS", "ESLint"],
+    correctAnswer: "ESLint",
   },
 ];
 
@@ -167,14 +123,14 @@ const startTimer = function () {
       renderQuizOver();
     } else {
       countdownClock -= 1;
-      clockElement.textContent = "Time Remaining: " + countdownClock;
+      clockElement.textContent = `Time Remaining: ${countdownClock}`;
     }
   };
   const clock = setInterval(timerTick, 1000);
 };
 
 // Render Questions - do i need to loop within this function
-const renderQuestions = function () {
+const renderQuestion = function () {
   const answerButton = document.createElement("button");
   answerButton.setAttribute("id", "answer-button");
   answerButton.textContent = "testing Button";
@@ -194,9 +150,11 @@ const renderQuestions = function () {
   questionsDiv.append(questionString, answerButton);
   questionsContainer.appendChild(questionsDiv);
   mainElement.appendChild(questionsContainer);
-};
 
-//
+  const renderAnswers = function () {
+    // for each loop
+  };
+};
 
 const answerValidation = function (myQuestions) {
   // function to validate the answers
@@ -218,7 +176,7 @@ const startQuiz = function () {
 
   startTimer();
 
-  renderQuestions();
+  renderQuestion();
 };
 
 startQuizButton.addEventListener("click", startQuiz);
