@@ -116,6 +116,16 @@ body {
   background-color: var(--cyber-yellow);
 }
 
+.highscore {
+  font-size: 1.5rem;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.highscore::hover {
+  color: red;
+}
+
 .answers-btn {
   margin: 10px;
   color: black;
