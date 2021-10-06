@@ -7,7 +7,7 @@ const headerContainer = document.getElementById("header");
 const mainElement = document.getElementById("main-element");
 
 // countdown starting value
-let countdownClock = 3;
+let countdownClock = 60;
 
 // Questions Object Array
 const myQuestions = [
@@ -45,7 +45,6 @@ const myQuestions = [
       "let myFunction = function []",
       "case function.Myfunction()",
     ],
-
     correctAnswer: "const myFunction = Function ()",
   },
   {
@@ -69,6 +68,9 @@ const myQuestions = [
     correctAnswer: "ESLint",
   },
 ];
+
+let currentIndex = 0;
+let currentQuestion = myQuestions[currentIndex];
 
 // Render Timer Function
 const renderTimer = function () {
@@ -129,13 +131,8 @@ const startTimer = function () {
   const clock = setInterval(timerTick, 1000);
 };
 
-// Render Questions - do i need to loop within this function
+// Render Questions
 const renderQuestion = function () {
-  const answerButton = document.createElement("button");
-  answerButton.setAttribute("id", "answer-button");
-  answerButton.textContent = "testing Button";
-  console.log(answerButton);
-
   const questionString = document.createElement("p");
   questionString.setAttribute("class", "question-string");
   questionString.textContent = "Checking If It works";
@@ -147,13 +144,26 @@ const renderQuestion = function () {
   questionsContainer.setAttribute("id", "question-element");
   questionsContainer.setAttribute("class", "question-element");
 
-  questionsDiv.append(questionString, answerButton);
+  const questionTitle = document.createElement("h2");
+  questionTitle.setAttribute("id", "question");
+  questionTitle.textContent = currentQuestion.question;
+  questionsDiv.appendChild(questionTitle);
+  console.log(questionTitle);
+
   questionsContainer.appendChild(questionsDiv);
   mainElement.appendChild(questionsContainer);
 
-  const renderAnswers = function () {
-    // for each loop
+  const renderAnswers = function (answer, index) {
+    const answerButton = document.createElement("button");
+
+    answerButton.setAttribute("class", "answers-btn");
+    answerButton.setAttribute("id", index);
+    answerButton.setAttribute("data-answer", answer);
+    answerButton.textContent = answer;
+    questionsDiv.appendChild(answerButton);
   };
+
+  currentQuestion.answers.forEach(renderAnswers);
 };
 
 const answerValidation = function (myQuestions) {
@@ -183,7 +193,6 @@ startQuizButton.addEventListener("click", startQuiz);
 console.log(startQuizButton);
 
 const answerButton = document.getElementById("answer-button");
-console.log(answerButton);
 
 // answerButton.addEventListener("click", renderQuestions);
 // console.log(answerButton, "click");
