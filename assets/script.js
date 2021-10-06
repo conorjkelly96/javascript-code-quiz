@@ -7,7 +7,7 @@ const headerContainer = document.getElementById("header");
 const mainElement = document.getElementById("main-element");
 
 // countdown starting value
-let countdownClock = 60;
+let countdownClock = 3;
 
 // Questions Object Array
 const myQuestions = [
@@ -104,7 +104,7 @@ const renderQuizOver = function () {
   gameOverMainDiv.appendChild(gameOverDiv1);
   gameOverMainDiv.appendChild(gameOverDiv2);
   mainElement.appendChild(gameOverMainDiv);
-  console.log("You can do better than that, surely? 🤣🤣🤣");
+  console.log("You can do better than that surely you mug? 🤣🤣🤣");
 
   // function to refresh page and return to main
   const refreshPage = function () {
@@ -148,7 +148,6 @@ const renderQuestion = function () {
   questionTitle.setAttribute("id", "question");
   questionTitle.textContent = currentQuestion.question;
   questionsDiv.appendChild(questionTitle);
-  console.log(questionTitle);
 
   questionsContainer.appendChild(questionsDiv);
   mainElement.appendChild(questionsContainer);
@@ -162,20 +161,27 @@ const renderQuestion = function () {
     answerButton.textContent = answer;
     questionsDiv.appendChild(answerButton);
   };
-
   currentQuestion.answers.forEach(renderAnswers);
 };
 
-const answerValidation = function (myQuestions) {
-  // function to validate the answers
-  // get current question
-  // get my questions
-  // if statement (how to compare - data-attribute vs object value?):
-  // if user choice = myQuestions.correctAnswer then
-  // nothing, progress to next question
-  // progress to next questions
-  //  if != myQuestions.correctAnswer
-  // the let countdownClock =- 5
+const answerValidation = function (event) {
+  const currentTarget = event.currentTarget;
+  const target = event.target;
+  console.log(currentTarget, target);
+
+  const correctAnswer = currentQuestion.answer;
+  const userAnswer = currentTarget;
+
+  if (correctAnswer === userAnswer) {
+    questionsDiv.remove();
+    currentIndex++;
+    renderQuestion();
+  } else {
+    countdownClock + 5;
+    questionsDiv.remove();
+    currentIndex++;
+    renderQuestion();
+  }
 };
 
 // Start Quiz - remove elements, start timer and render question
@@ -187,10 +193,11 @@ const startQuiz = function () {
   startTimer();
 
   renderQuestion();
+
+  answerButton.addEventListener(renderQuestion);
 };
 
 startQuizButton.addEventListener("click", startQuiz);
-console.log(startQuizButton);
 
 const answerButton = document.getElementById("answer-button");
 

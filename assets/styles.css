@@ -136,10 +136,14 @@ body {
   letter-spacing: 1px;
   cursor: pointer;
   box-shadow: inset 0 0 0 0 var(--heliotrope);
-  -webkit-transition: ease-out 0.4s;
-  -moz-transition: ease-out 0.4s;
-  transition: ease-out 0.4s;
 }
 .answers-btn:hover {
   box-shadow: inset 400px 0 0 0 var(--heliotrope);
+}
+
+.question-div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 10px;
 }
