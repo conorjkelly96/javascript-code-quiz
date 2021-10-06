@@ -7,7 +7,7 @@ const headerContainer = document.getElementById("header");
 const mainElement = document.getElementById("main-element");
 
 // countdown starting value
-let countdownClock = 60;
+let countdownClock = 3;
 
 // Questions Object Array
 const myQuestions = [
@@ -173,7 +173,7 @@ const startTimer = function () {
   const clock = setInterval(timerTick, 1000);
 };
 
-// Render Questions
+// Render Questions - do i need to loop within this function
 const renderQuestions = function () {
   const answerButton = document.createElement("button");
   answerButton.setAttribute("id", "answer-button");
@@ -194,6 +194,20 @@ const renderQuestions = function () {
   questionsDiv.append(questionString, answerButton);
   questionsContainer.appendChild(questionsDiv);
   mainElement.appendChild(questionsContainer);
+};
+
+//
+
+const answerValidation = function (myQuestions) {
+  // function to validate the answers
+  // get current question
+  // get my questions
+  // if statement (how to compare - data-attribute vs object value?):
+  // if user choice = myQuestions.correctAnswer then
+  // nothing, progress to next question
+  // progress to next questions
+  //  if != myQuestions.correctAnswer
+  // the let countdownClock =- 5
 };
 
 // Start Quiz - remove elements, start timer and render question
