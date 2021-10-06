@@ -169,7 +169,7 @@ const answerValidation = function (event) {
   const target = event.target;
   console.log(currentTarget, target);
 
-  const correctAnswer = currentQuestion.answer;
+  const correctAnswer = currentQuestion.answers;
   const userAnswer = currentTarget;
 
   if (correctAnswer === userAnswer) {
@@ -182,6 +182,7 @@ const answerValidation = function (event) {
     currentIndex++;
     renderQuestion();
   }
+  answerButton.addEventListener("click", answerValidation);
 };
 
 // Start Quiz - remove elements, start timer and render question
