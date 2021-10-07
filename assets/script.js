@@ -94,7 +94,7 @@ const renderQuizOver = function () {
 
   const retryButton = document.createElement("button");
   retryButton.setAttribute("id", "startbtn");
-  retryButton.textContent = "Back to main";
+  retryButton.textContent = "Play Again";
 
   const gameOverDiv2 = document.createElement("div");
   gameOverDiv2.appendChild(retryButton);
@@ -104,7 +104,7 @@ const renderQuizOver = function () {
   gameOverMainDiv.appendChild(gameOverDiv1);
   gameOverMainDiv.appendChild(gameOverDiv2);
   mainElement.appendChild(gameOverMainDiv);
-  console.log("You can do better than that surely you mug? 🤣🤣🤣");
+  console.log("You can do better than that surely? 🤣🤣🤣");
 
   // function to refresh page and return to main
   const refreshPage = function () {
@@ -175,12 +175,16 @@ const answerValidation = function (event) {
   if (correctAnswer === userAnswer) {
     questionsDiv.remove();
     currentIndex++;
-    renderQuestion();
+    // renderQuestion();
+    const answerButton = document.getElementById("answer-button");
+    answerButton.addEventListener("click", renderQuestion);
   } else {
     countdownClock + 5;
     questionsDiv.remove();
     currentIndex++;
-    renderQuestion();
+    // renderQuestion();
+    const answerButton = document.getElementById("answer-button");
+    answerButton.addEventListener("click", renderQuestion);
   }
   answerButton.addEventListener("click", answerValidation);
 };
@@ -195,10 +199,23 @@ const startQuiz = function () {
 
   renderQuestion();
 
-  answerButton.addEventListener(renderQuestion);
+  answerValidation();
 };
 
-//
+const renderScore = function () {
+  // • Remove last question
+  // • Build score container
+  // • Append score container to main
+  // • Event listeners added also
+  // • Getvalue from form input (initials)
+  // • Get remaining time
+  // • Construct an object {
+  // • Initials:
+  // • Score:
+  // • }
+  // Store object in local storage
+};
+
 const renderHighScore = function () {
   // 1. Get data from local storage - first call to local storage will be null
   // a. localStorage.getItem(Name of the key)
@@ -211,8 +228,3 @@ const renderHighScore = function () {
 };
 
 startQuizButton.addEventListener("click", startQuiz);
-
-const answerButton = document.getElementById("answer-button");
-
-// answerButton.addEventListener("click", renderQuestions);
-// console.log(answerButton, "click");
