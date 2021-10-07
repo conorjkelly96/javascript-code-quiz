@@ -7,7 +7,7 @@ const headerContainer = document.getElementById("header");
 const mainElement = document.getElementById("main-element");
 
 // countdown starting value
-let countdownClock = 3;
+let countdownClock = 60;
 
 // Questions Object Array
 const myQuestions = [
@@ -70,7 +70,6 @@ const myQuestions = [
 ];
 
 let currentIndex = 0;
-let currentQuestion = myQuestions[currentIndex];
 
 // Render Timer Function
 const renderTimer = function () {
@@ -133,23 +132,31 @@ const startTimer = function () {
 
 // Render Questions
 const renderQuestion = function () {
+  const currentQuestion = myQuestions[currentIndex];
+  console.log(currentIndex);
+
   const questionString = document.createElement("p");
   questionString.setAttribute("class", "question-string");
   questionString.textContent = "Checking If It works";
 
   const questionsDiv = document.createElement("div");
   questionsDiv.setAttribute("class", "question-div");
+  questionsDiv.setAttribute("id", "question-div");
 
   const questionsContainer = document.createElement("div");
   questionsContainer.setAttribute("id", "question-element");
+  questionsContainer.setAttribute("data-answer", currentQuestion.correctAnswer);
   questionsContainer.setAttribute("class", "question-element");
 
   const questionTitle = document.createElement("h2");
   questionTitle.setAttribute("id", "question");
   questionTitle.textContent = currentQuestion.question;
+  console.log(currentQuestion);
   questionsDiv.appendChild(questionTitle);
 
   questionsContainer.appendChild(questionsDiv);
+  questionsContainer.addEventListener("click", answerValidation);
+
   mainElement.appendChild(questionsContainer);
 
   const renderAnswers = function (answer, index) {
@@ -157,10 +164,12 @@ const renderQuestion = function () {
 
     answerButton.setAttribute("class", "answers-btn");
     answerButton.setAttribute("id", index);
-    answerButton.setAttribute("data-answer", answer);
+    answerButton.setAttribute("data-option", answer);
     answerButton.textContent = answer;
     questionsDiv.appendChild(answerButton);
   };
+
+  // currentIndex++;
   currentQuestion.answers.forEach(renderAnswers);
 };
 
@@ -169,24 +178,27 @@ const answerValidation = function (event) {
   const target = event.target;
   console.log(currentTarget, target);
 
-  const correctAnswer = currentQuestion.answers;
-  const userAnswer = currentTarget;
+  const correctAnswer = currentTarget.getAttribute("data-answer");
+  const userAnswer = target.getAttribute("data-option");
+  console.log(correctAnswer, userAnswer);
 
-  if (correctAnswer === userAnswer) {
-    questionsDiv.remove();
-    currentIndex++;
-    // renderQuestion();
-    const answerButton = document.getElementById("answer-button");
-    answerButton.addEventListener("click", renderQuestion);
-  } else {
-    countdownClock + 5;
-    questionsDiv.remove();
-    currentIndex++;
-    // renderQuestion();
-    const answerButton = document.getElementById("answer-button");
-    answerButton.addEventListener("click", renderQuestion);
-  }
-  answerButton.addEventListener("click", answerValidation);
+  document.getElementById("question-element").remove();
+  currentIndex++;
+  renderQuestion();
+
+  // const questionsDiv = document.getElementById("question-div");
+  // questionsDiv.addEventListener("click", renderQuestion);
+
+  // if (correctAnswer === userAnswer) {
+  //   questionsDiv.remove();
+  //   currentIndex++;
+  //   renderQuestion();
+  // } else {
+  //   countdownClock + 5;
+  //   questionsDiv.remove();
+  //   currentIndex++;
+  //   renderQuestion();
+  // }
 };
 
 // Start Quiz - remove elements, start timer and render question
@@ -198,8 +210,6 @@ const startQuiz = function () {
   startTimer();
 
   renderQuestion();
-
-  answerValidation();
 };
 
 const renderScore = function () {
