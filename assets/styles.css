@@ -147,3 +147,23 @@ body {
   flex-wrap: wrap;
   padding: 10px;
 }
+
+.footer-banner {
+  bottom: 0;
+  position: relative;
+  width: 100%;
+  justify-content: space-evenly;
+  color: white;
+  text-align: center;
+}
+
+.social-icons {
+  width: 50px;
+  margin: 12px;
+  opacity: 0.5;
+}
+
+.social-icons:hover {
+  transform: translateY(-5px);
+  opacity: 1;
+}

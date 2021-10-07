@@ -198,6 +198,18 @@ const startQuiz = function () {
   answerButton.addEventListener(renderQuestion);
 };
 
+//
+const renderHighScore = function () {
+  // 1. Get data from local storage - first call to local storage will be null
+  // a. localStorage.getItem(Name of the key)
+  // 2. If empty = true, create array messages = [hello]
+  // 3. Set Local Storage
+  //     localStorage.setItem('key', JSON.stringify(variable));
+  //     4. When null = false, [Hello] will be returned,
+  //     a. Const myArray = JSON.parse(datafromLS)
+  //     myArray.Push(MyString)
+};
+
 startQuizButton.addEventListener("click", startQuiz);
 
 const answerButton = document.getElementById("answer-button");
