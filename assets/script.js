@@ -178,10 +178,11 @@ const answerValidation = function (event) {
     document.getElementById("question-element").remove();
     currentIndex++;
     renderQuestion();
+    countdownClock += 5;
   } else {
     document.getElementById("question-element").remove();
     currentIndex++;
-    countdownClock += 5;
+    countdownClock -= 5;
     renderQuestion();
   }
 };
