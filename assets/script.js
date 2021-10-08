@@ -24,7 +24,7 @@ const myQuestions = [
   {
     question: "Founder Brendan Eich created JavaScript in:",
     answers: ["10 hours", "10 days", "10 weeks", "10 months"],
-    correctAnswer: "b",
+    correctAnswer: "10 days",
   },
   {
     question: "To link external scripts, which syntax is correct?",
@@ -35,7 +35,7 @@ const myQuestions = [
     question:
       "I want to prompt the user to input their name. Which syntax is correct?",
     answers: ["alertBox()", "msg()", "prompt()", "addEventListener.onClick()"],
-    correctAnswer: "c",
+    correctAnswer: "msg()",
   },
   {
     question: "How do you express a function in JavaScript",
@@ -82,7 +82,6 @@ const renderTimer = function () {
 
 // Render Quiz Over - Only when the user completes the quiz
 const renderQuizOver = function () {
-  // creating p tag
   const gameOverText = document.createElement("p");
   gameOverText.setAttribute("class", "game-over-text");
   gameOverText.textContent =
@@ -133,11 +132,6 @@ const startTimer = function () {
 // Render Questions
 const renderQuestion = function () {
   const currentQuestion = myQuestions[currentIndex];
-  console.log(currentIndex);
-
-  const questionString = document.createElement("p");
-  questionString.setAttribute("class", "question-string");
-  questionString.textContent = "Checking If It works";
 
   const questionsDiv = document.createElement("div");
   questionsDiv.setAttribute("class", "question-div");
@@ -151,7 +145,6 @@ const renderQuestion = function () {
   const questionTitle = document.createElement("h2");
   questionTitle.setAttribute("id", "question");
   questionTitle.textContent = currentQuestion.question;
-  console.log(currentQuestion);
   questionsDiv.appendChild(questionTitle);
 
   questionsContainer.appendChild(questionsDiv);
@@ -176,29 +169,21 @@ const renderQuestion = function () {
 const answerValidation = function (event) {
   const currentTarget = event.currentTarget;
   const target = event.target;
-  console.log(currentTarget, target);
 
   const correctAnswer = currentTarget.getAttribute("data-answer");
   const userAnswer = target.getAttribute("data-option");
   console.log(correctAnswer, userAnswer);
 
-  document.getElementById("question-element").remove();
-  currentIndex++;
-  renderQuestion();
-
-  // const questionsDiv = document.getElementById("question-div");
-  // questionsDiv.addEventListener("click", renderQuestion);
-
-  // if (correctAnswer === userAnswer) {
-  //   questionsDiv.remove();
-  //   currentIndex++;
-  //   renderQuestion();
-  // } else {
-  //   countdownClock + 5;
-  //   questionsDiv.remove();
-  //   currentIndex++;
-  //   renderQuestion();
-  // }
+  if (correctAnswer === userAnswer) {
+    document.getElementById("question-element").remove();
+    currentIndex++;
+    renderQuestion();
+  } else {
+    document.getElementById("question-element").remove();
+    currentIndex++;
+    countdownClock += 5;
+    renderQuestion();
+  }
 };
 
 // Start Quiz - remove elements, start timer and render question
