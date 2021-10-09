@@ -199,6 +199,25 @@ const startQuiz = function () {
 };
 
 const renderScore = function () {
+  document.getElementById("question-element").remove();
+
+  const scoreDiv = document.createElement("div");
+  scoreDiv.setAttribute("class", "score-div");
+  scoreDiv.setAttribute("id", "score-div");
+
+  const scoreContainer = document.createElement("div");
+  scoreContainer.setAttribute("id", "score-container");
+  scoreContainer.setAttribute("class", "score-container");
+
+  const scoreHeader = document.createElement("h2");
+  scoreHeader.setAttribute("id", "score-title");
+  scoreHeader.textContent = `Your Score Is: ${countdownClock}`;
+
+  scoreContainer.appendChild(scoreDiv);
+  scoreContainer.addEventListener("click", answerValidation);
+
+  mainElement.appendChild(scoreContainer);
+
   // • Remove last question
   // • Build score container
   // • Append score container to main
