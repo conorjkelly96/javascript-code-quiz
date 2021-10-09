@@ -154,7 +154,6 @@ const renderQuestion = function () {
 
   const renderAnswers = function (answer, index) {
     const answerButton = document.createElement("button");
-
     answerButton.setAttribute("class", "answers-btn");
     answerButton.setAttribute("id", index);
     answerButton.setAttribute("data-option", answer);
@@ -162,7 +161,6 @@ const renderQuestion = function () {
     questionsDiv.appendChild(answerButton);
   };
 
-  // currentIndex++;
   currentQuestion.answers.forEach(renderAnswers);
 };
 
@@ -174,16 +172,22 @@ const answerValidation = function (event) {
   const userAnswer = target.getAttribute("data-option");
   console.log(correctAnswer, userAnswer);
 
-  if (correctAnswer === userAnswer) {
-    document.getElementById("question-element").remove();
-    currentIndex++;
-    renderQuestion();
-    countdownClock += 5;
+  if (currentIndex < myQuestions.length - 1) {
+    if (correctAnswer === userAnswer) {
+      document.getElementById("question-element").remove();
+      currentIndex++;
+      renderQuestion();
+      console.log(currentIndex);
+      countdownClock += 5;
+    } else {
+      document.getElementById("question-element").remove();
+      currentIndex++;
+      console.log(currentIndex);
+      countdownClock -= 5;
+      renderQuestion();
+    }
   } else {
-    document.getElementById("question-element").remove();
-    currentIndex++;
-    countdownClock -= 5;
-    renderQuestion();
+    renderScore();
   }
 };
 
@@ -199,6 +203,7 @@ const startQuiz = function () {
 };
 
 const renderScore = function () {
+  clearInterval(clock);
   document.getElementById("question-element").remove();
 
   const scoreDiv = document.createElement("div");
@@ -213,7 +218,24 @@ const renderScore = function () {
   scoreHeader.setAttribute("id", "score-title");
   scoreHeader.textContent = `Your Score Is: ${countdownClock}`;
 
+  const enterInitials = document.createElement("p");
+  enterInitials.setAttribute("class", "user-initials");
+  enterInitials.textContent = `Enter Initials:`;
+
+  const submitButton = document.createElement("button");
+  submitButton.setAttribute("id", "submit-btn");
+  submitButton.setAttribute("class", "submit-btn");
+  submitButton.textContent = `Submit Score`;
+
+  const userInitials = document.createElement("input");
+  userInitials.setAttribute("id", "user-input");
+  userInitials.setAttribute("class", "user-input");
+
   scoreContainer.appendChild(scoreDiv);
+  scoreContainer.appendChild(scoreHeader);
+  scoreContainer.appendChild(enterInitials);
+  scoreContainer.appendChild(userInitials);
+  scoreContainer.appendChild(submitButton);
   scoreContainer.addEventListener("click", answerValidation);
 
   mainElement.appendChild(scoreContainer);
