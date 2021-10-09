@@ -243,16 +243,17 @@ const renderScore = function () {
 
   const saveData = function () {
     const input = document.getElementById("user-input");
-    localStorage.setItem("Initials", input.value);
+    const localStorageContents =
+      JSON.parse(localStorage.getItem("Initials")) || [];
+    localStorageContents = localStorage.setItem("Initials", input.value);
     localStorage.setItem("Highscore", finalScore);
   };
 
-  submitButton.addEventListener("click", saveData);
+  submitButton.addEventListener("click", saveData, []);
 };
 
 const initializeLocalStorage = function (key, defaultValue) {
   const userHighscores = JSON.parse(localStorage.getItem(key));
-  console.log(score);
 
   if (!userHighscores) {
     localStorage.setItem(key, JSON.stringify(defaultValue));
