@@ -170,7 +170,6 @@ const answerValidation = function (event) {
 
   const correctAnswer = currentTarget.getAttribute("data-answer");
   const userAnswer = target.getAttribute("data-option");
-  console.log(correctAnswer, userAnswer);
 
   if (currentIndex < myQuestions.length - 1) {
     if (correctAnswer === userAnswer) {
@@ -205,6 +204,8 @@ const startQuiz = function () {
 const renderScore = function () {
   clearInterval(clock);
   document.getElementById("question-element").remove();
+  const finalScore = countdownClock;
+  console.log(finalScore);
 
   const scoreDiv = document.createElement("div");
   scoreDiv.setAttribute("class", "score-div");
@@ -240,20 +241,35 @@ const renderScore = function () {
 
   mainElement.appendChild(scoreContainer);
 
-  // • Remove last question
-  // • Build score container
-  // • Append score container to main
-  // • Event listeners added also
-  // • Getvalue from form input (initials)
-  // • Get remaining time
-  // • Construct an object {
-  // • Initials:
-  // • Score:
-  // • }
-  // Store object in local storage
+  const saveData = function () {
+    const input = document.getElementById("user-input");
+    localStorage.setItem("Initials", input.value);
+    localStorage.setItem("Highscore", finalScore);
+  };
+
+  submitButton.addEventListener("click", saveData);
 };
 
-const renderHighScore = function () {
+const initializeLocalStorage = function (key, defaultValue) {
+  const userHighscores = JSON.parse(localStorage.getItem(key));
+  console.log(score);
+
+  if (!userHighscores) {
+    localStorage.setItem(key, JSON.stringify(defaultValue));
+  }
+};
+
+const getFromLocalStorage = function (key, defaultValue) {
+  const localStorageData = JSON.parse(localStorage.getItem(key));
+
+  if (!localStorageData) {
+    return defaultValue;
+  } else {
+    return localStorageData;
+  }
+};
+
+const renderHighScore = function (event) {
   // 1. Get data from local storage - first call to local storage will be null
   // a. localStorage.getItem(Name of the key)
   // 2. If empty = true, create array messages = [hello]
