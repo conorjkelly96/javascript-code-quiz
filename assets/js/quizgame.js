@@ -71,7 +71,7 @@ const myQuestions = [
 
 let currentIndex = 0;
 
-// Render Timer Function
+// Render Timer Function - put in startQuiz fn
 const renderTimer = function () {
   const timerElement = document.createElement("div");
   timerElement.textContent = "Time Remaining " + countdownClock;
@@ -129,7 +129,7 @@ const startTimer = function () {
   const clock = setInterval(timerTick, 1000);
 };
 
-// Render Questions
+// Render Questions - cycle through myQuestions object array
 const renderQuestion = function () {
   const currentQuestion = myQuestions[currentIndex];
 
@@ -152,6 +152,7 @@ const renderQuestion = function () {
 
   mainElement.appendChild(questionsContainer);
 
+  // Render Answers - constructing buttons and data options to be used in validation
   const renderAnswers = function (answer, index) {
     const answerButton = document.createElement("button");
     answerButton.setAttribute("class", "answers-btn");
@@ -161,9 +162,11 @@ const renderQuestion = function () {
     questionsDiv.appendChild(answerButton);
   };
 
+  // For each answer, construct an answerButton along with Class, ID and Data-Attribute.
   currentQuestion.answers.forEach(renderAnswers);
 };
 
+// Once the answer has been selected, validate
 const answerValidation = function (event) {
   const currentTarget = event.currentTarget;
   const target = event.target;
@@ -171,17 +174,16 @@ const answerValidation = function (event) {
   const correctAnswer = currentTarget.getAttribute("data-answer");
   const userAnswer = target.getAttribute("data-option");
 
+  // Initial IF statement to ensure the game isn't over, Second IF to carry out game logic
   if (currentIndex < myQuestions.length - 1) {
     if (correctAnswer === userAnswer) {
       document.getElementById("question-element").remove();
       currentIndex++;
       renderQuestion();
-      console.log(currentIndex);
       countdownClock += 5;
     } else {
       document.getElementById("question-element").remove();
       currentIndex++;
-      console.log(currentIndex);
       countdownClock -= 5;
       renderQuestion();
     }
@@ -201,11 +203,11 @@ const startQuiz = function () {
   renderQuestion();
 };
 
+// Render Score: Remove last question, construct score container and allow user to submit initials
 const renderScore = function () {
   document.querySelector("#clock").remove();
   document.getElementById("question-element").remove();
   const finalScore = countdownClock;
-  console.log(finalScore);
 
   const scoreDiv = document.createElement("div");
   scoreDiv.setAttribute("class", "score-div");
@@ -241,6 +243,7 @@ const renderScore = function () {
 
   mainElement.appendChild(scoreContainer);
 
+  // Save Data to Local Storage
   const saveData = function () {
     const dataFromLS = localStorage.getItem("user-input");
 

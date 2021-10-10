@@ -81,10 +81,11 @@ const highScoreList = function () {
   for (let i = 0; i < latestScores.length; i++) {
     const data = latestScores[i];
     const scoreList = document.createElement("p");
-    console.log(scoreList);
+
     scoreList.setAttribute("class", "score-tag");
     scoreList.setAttribute("id", "score-tag");
     scoreList.textContent = `Player Name: ${data.initials} || Player Score: ${data.score}`;
+
     const resultsDiv = document.getElementById("results-quiz-div");
     resultsDiv.appendChild(scoreList);
   }
