@@ -202,7 +202,7 @@ const startQuiz = function () {
 };
 
 const renderScore = function () {
-  clearInterval(clock);
+  document.querySelector("#clock").remove();
   document.getElementById("question-element").remove();
   const finalScore = countdownClock;
   console.log(finalScore);
@@ -242,14 +242,26 @@ const renderScore = function () {
   mainElement.appendChild(scoreContainer);
 
   const saveData = function () {
+    const dataFromLS = localStorage.getItem("user-input");
+    console.log(dataFromLS);
+
     const input = document.getElementById("user-input");
-    const localStorageContents =
-      JSON.parse(localStorage.getItem("Initials")) || [];
-    localStorageContents = localStorage.setItem("Initials", input.value);
-    localStorage.setItem("Highscore", finalScore);
+    const inputArray = [];
+    let getUserCredentials = {
+      initials: input.value,
+      score: finalScore,
+    };
+    if (!dataFromLS) {
+      const userCredentials = [getUserCredentials];
+      localStorage.setItem("user-input", JSON.stringify(inputArray));
+    } else {
+      const savedCredentials = JSON.parse(dataFromLS);
+      savedCredentials.push(getUserCredentials);
+      localStorage.setItem("user-input", JSON.stringify(savedCredentials));
+    }
   };
 
-  submitButton.addEventListener("click", saveData, []);
+  submitButton.addEventListener("click", saveData);
 };
 
 const initializeLocalStorage = function (key, defaultValue) {
@@ -268,17 +280,6 @@ const getFromLocalStorage = function (key, defaultValue) {
   } else {
     return localStorageData;
   }
-};
-
-const renderHighScore = function (event) {
-  // 1. Get data from local storage - first call to local storage will be null
-  // a. localStorage.getItem(Name of the key)
-  // 2. If empty = true, create array messages = [hello]
-  // 3. Set Local Storage
-  //     localStorage.setItem('key', JSON.stringify(variable));
-  //     4. When null = false, [Hello] will be returned,
-  //     a. Const myArray = JSON.parse(datafromLS)
-  //     myArray.Push(MyString)
 };
 
 startQuizButton.addEventListener("click", startQuiz);

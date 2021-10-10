@@ -11,10 +11,7 @@ const getFromLocalStorage = function (key, defaultValue) {
 // Function to get from local storage and display high score
 const highScoreList = function () {
   // variable to hold data
-  const scores = getFromLocalStorage("Highscore");
-  const initials = getFromLocalStorage("Initials");
-  console.log(scores);
-
+  const userScores = getFromLocalStorage("user-input", score);
   const userInitials = document.createElement("p");
   userInitials.setAttribute("Class", "Scores");
   userInitials.setAttribute("id", "Initials");
