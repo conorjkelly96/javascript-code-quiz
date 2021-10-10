@@ -213,3 +213,8 @@ body {
   margin: 10px;
   text-decoration: none;
 }
+
+.score-tag {
+  font-size: 1.5rem;
+  padding: 10px;
+}

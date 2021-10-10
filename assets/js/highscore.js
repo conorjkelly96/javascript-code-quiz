@@ -1,21 +1,22 @@
+let currentIndex = 0;
+
 const highScoreList = function () {
   const latestScores = JSON.parse(localStorage.getItem("user-input") || "[]");
-  const latestArray = [latestScores];
-  let currentIndex = 0;
-  console.log(latestArray);
+  console.log(latestScores);
+  const resultsCycle = latestScores[currentIndex];
+  console.log(resultsCycle);
+  console.log(latestScores[3].score);
 
-  const renderScores = function (scores, index) {
+  for (let i = 0; i < latestScores.length; i++) {
+    console.log(i);
     scoreList = document.createElement("p");
     console.log(scoreList);
     scoreList.setAttribute("class", "score-tag");
-    scoreList.setAttribute("id", index);
-    scoreList.setAttribute("data-option", scores);
-    scoreList.textContent = "latestScores.score";
-
+    scoreList.setAttribute("id", "score-tag");
+    scoreList.textContent = `Player Name: ${resultsCycle.initials} || Player Score: ${resultsCycle.score}`;
     const resultsDiv = document.getElementById("results-quiz-div");
     resultsDiv.appendChild(scoreList);
-  };
-  latestArray.scores.forEach(renderScores);
+  }
 };
 
 highScoreList();
