@@ -194,6 +194,8 @@ const answerValidation = function (event) {
 const startQuiz = function () {
   startQuizDiv.remove();
 
+  checkLocalStorage();
+
   renderTimer();
 
   startTimer();
@@ -243,7 +245,6 @@ const renderScore = function () {
 
   const saveData = function () {
     const dataFromLS = localStorage.getItem("user-input");
-    console.log(dataFromLS);
 
     const input = document.getElementById("user-input");
     const inputArray = [];
@@ -264,7 +265,7 @@ const renderScore = function () {
   submitButton.addEventListener("click", saveData);
 };
 
-const initializeLocalStorage = function (key, defaultValue) {
+const checkLocalStorage = function () {
   const userHighscores = JSON.parse(localStorage.getItem(key));
 
   if (!userHighscores) {
@@ -283,23 +284,3 @@ const getFromLocalStorage = function (key, defaultValue) {
 };
 
 startQuizButton.addEventListener("click", startQuiz);
-
-const highScoreList = function () {
-  const latestScores = (users = JSON.parse(
-    localStorage.getItem("user-input") || "[]"
-  ));
-  console.log(latestScores);
-
-  const renderScores = function (scores, index) {
-    const scoreList = document.createElement("p");
-    scoreList.setAttribute("class", "score-tag");
-    scoreList.setAttribute("id", index);
-    scoreList.setAttribute("data-option", getUserCredentials.scores);
-    scoreList.textContent = scores;
-    questionsDiv.appendChild(answerButton);
-  };
-
-  currentQuestion.answers.forEach(renderScores);
-};
-
-highScoreList();
