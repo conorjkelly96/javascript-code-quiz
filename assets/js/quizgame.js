@@ -283,3 +283,21 @@ const getFromLocalStorage = function (key, defaultValue) {
 };
 
 startQuizButton.addEventListener("click", startQuiz);
+
+const highScoreList = function () {
+  const latestScores = [getFromLocalStorage("user-input", score)];
+  console.log(latestScores);
+
+  const renderScores = function (scores, index) {
+    const scoreList = document.createElement("p");
+    scoreList.setAttribute("class", "score-tag");
+    scoreList.setAttribute("id", index);
+    scoreList.setAttribute("data-option", getUserCredentials.scores);
+    scoreList.textContent = scores;
+    questionsDiv.appendChild(answerButton);
+  };
+
+  currentQuestion.answers.forEach(renderScores);
+};
+
+highScoreList();
