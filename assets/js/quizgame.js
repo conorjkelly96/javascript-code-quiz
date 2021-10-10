@@ -285,7 +285,9 @@ const getFromLocalStorage = function (key, defaultValue) {
 startQuizButton.addEventListener("click", startQuiz);
 
 const highScoreList = function () {
-  const latestScores = [getFromLocalStorage("user-input", score)];
+  const latestScores = (users = JSON.parse(
+    localStorage.getItem("user-input") || "[]"
+  ));
   console.log(latestScores);
 
   const renderScores = function (scores, index) {
