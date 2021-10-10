@@ -194,8 +194,6 @@ const answerValidation = function (event) {
 const startQuiz = function () {
   startQuizDiv.remove();
 
-  checkLocalStorage();
-
   renderTimer();
 
   startTimer();
