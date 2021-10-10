@@ -129,7 +129,13 @@ body {
 }
 
 .highscore {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.header-content {
+  font-size: 2rem;
   margin: 10px;
   text-decoration: none;
 }

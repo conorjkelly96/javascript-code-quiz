@@ -10,7 +10,7 @@ For every wrong answer, a deduction of 5 seconds is taken from the clock, with e
 
 Below is a screenshot of the welcome page users see upon window load.
 
-![Original Website](/assets/images/main-page-record-load.png)
+![Original Website](assets/images/main-page-record-load.png)
 
 ## Technologies Used
 
@@ -90,6 +90,13 @@ const highScoreList = function () {
   }
 };
 ```
+
+A snapshot of the question container is below:
+![Quiz Shot](assets/images/quizshot.png)
+
+A screenshot of the game over container when time remaining hits 0.
+
+![Local Storage](assets/images/gameover.png)
 
 A snapshot of the leaderboard is below:
 
