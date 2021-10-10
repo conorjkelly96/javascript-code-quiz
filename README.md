@@ -4,9 +4,9 @@
 
 The goal for this project is to construct a JavaScript quiz which demonstrates dynamic DOM manipulation skills. The site functionality relies heavily on user interaction mainly via answer selection and user information. As the user progresses through the quiz, the time remaining on the quiz is dynamically updated, reflecting the user's score.
 
-For every wrong answer, a deduction of 5 seconds is taken from the clock, with every correct answer a reward of an additional 5 seconds. Once the last question's answer has been submitted, the user is presented their their score (remaining seconds) and is asked to input their initials, in which both values are saved in local storage. The user can navigate to the 'Highscores' page to see their highscore leaderboard, sourcing information from local storage.
+For every wrong answer, a deduction of 5 seconds is taken from the clock, with every correct answer a reward of an additional 5 seconds. Once the last question's answer has been submitted, the user is presented with their score (remaining seconds) and is asked to input their initials, in which both values are saved in local storage. The user can navigate to the 'Highscores' page to see their highscore leaderboard, sourcing information from local storage.
 
-## Original Website
+## Main Page
 
 Below is a screenshot of the welcome page users see upon window load.
 
