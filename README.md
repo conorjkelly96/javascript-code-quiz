@@ -10,7 +10,7 @@ For every wrong answer, a deduction of 5 seconds is taken from the clock, with e
 
 Below is a screenshot of the welcome page users see upon window load.
 
-![Original Website](/javascript-code-quiz/assets/images/main-page-record-load.png)
+![Original Website](./javascript-code-quiz/assets/images/main-page-record-load.png)
 
 ## Technologies Used
 
@@ -93,4 +93,4 @@ const highScoreList = function () {
 
 A snapshot of the leaderboard is below:
 
-![Local Storage](/javascript-code-quiz/assets/images/localstorage.png)
+![Local Storage](./javascript-code-quiz/assets/images/localstorage.png)
