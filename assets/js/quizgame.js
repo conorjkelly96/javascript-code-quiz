@@ -234,11 +234,11 @@ const renderScore = function () {
 
   // Save Data to Local Storage
   const saveData = function () {
-    const dataFromLS = localStorage.getItem("user-input");
+    const dataFromLS = JSON.parse(localStorage.getItem("user-input"));
 
     const input = document.getElementById("user-input");
     const inputArray = [];
-    let userCredentials = {
+    const userCredentials = {
       initials: input.value,
       score: finalScore,
     };
@@ -246,31 +246,13 @@ const renderScore = function () {
       inputArray.push(userCredentials);
       localStorage.setItem("user-input", JSON.stringify(inputArray));
     } else {
-      const savedCredentials = JSON.parse(dataFromLS);
+      const savedCredentials = dataFromLS;
       savedCredentials.push(userCredentials);
       localStorage.setItem("user-input", JSON.stringify(savedCredentials));
     }
   };
 
   submitButton.addEventListener("click", saveData);
-};
-
-const checkLocalStorage = function () {
-  const userHighscores = JSON.parse(localStorage.getItem(key));
-
-  if (!userHighscores) {
-    localStorage.setItem(key, JSON.stringify(defaultValue));
-  }
-};
-
-const getFromLocalStorage = function (key, defaultValue) {
-  const localStorageData = JSON.parse(localStorage.getItem(key));
-
-  if (!localStorageData) {
-    return defaultValue;
-  } else {
-    return localStorageData;
-  }
 };
 
 // Start Quiz - remove elements, start timer and render question
