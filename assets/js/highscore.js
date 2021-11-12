@@ -14,4 +14,5 @@ const highScoreList = function () {
   latestScores.forEach(constructLatestScores);
 };
 
-window.onLoad(highScoreList());
+// load highscoreList on window load
+window.onload(highScoreList());

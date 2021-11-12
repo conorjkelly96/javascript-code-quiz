@@ -5,6 +5,7 @@ const startQuizButtonDiv = document.getElementById("start-button-div");
 const startQuizButton = document.getElementById("startbtn");
 const headerContainer = document.getElementById("header");
 const mainElement = document.getElementById("main-element");
+const questionElement = document.getElementById("question-element");
 
 // countdown starting value
 let countdownClock = 60;
@@ -116,7 +117,7 @@ const startTimer = function () {
   const clockElement = document.querySelector("#clock");
 
   const timerTick = function () {
-    if (countdownClock <= 0) {
+    if (countdownClock <= 0 || currentIndex === 9) {
       clearInterval(clock);
       const questionsContainer = document.getElementById("question-element");
       questionsContainer.remove();
