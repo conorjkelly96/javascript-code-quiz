@@ -117,7 +117,7 @@ const startTimer = function () {
   const clockElement = document.querySelector("#clock");
 
   const timerTick = function () {
-    if (countdownClock <= 0 || currentIndex === 9) {
+    if (countdownClock <= 0) {
       clearInterval(clock);
       const questionsContainer = document.getElementById("question-element");
       questionsContainer.remove();
@@ -193,17 +193,6 @@ const answerValidation = function (event) {
   }
 };
 
-// Start Quiz - remove elements, start timer and render question
-const startQuiz = function () {
-  startQuizDiv.remove();
-
-  renderTimer();
-
-  startTimer();
-
-  renderQuestion();
-};
-
 // Render Score: Remove last question, construct score container and allow user to submit initials
 const renderScore = function () {
   document.querySelector("#clock").remove();
@@ -240,7 +229,6 @@ const renderScore = function () {
   scoreContainer.appendChild(enterInitials);
   scoreContainer.appendChild(userInitials);
   scoreContainer.appendChild(submitButton);
-  scoreContainer.addEventListener("click", answerValidation);
 
   mainElement.appendChild(scoreContainer);
 
@@ -250,16 +238,16 @@ const renderScore = function () {
 
     const input = document.getElementById("user-input");
     const inputArray = [];
-    let getUserCredentials = {
+    let userCredentials = {
       initials: input.value,
       score: finalScore,
     };
     if (!dataFromLS) {
-      const userCredentials = [getUserCredentials];
+      inputArray.push(userCredentials);
       localStorage.setItem("user-input", JSON.stringify(inputArray));
     } else {
       const savedCredentials = JSON.parse(dataFromLS);
-      savedCredentials.push(getUserCredentials);
+      savedCredentials.push(userCredentials);
       localStorage.setItem("user-input", JSON.stringify(savedCredentials));
     }
   };
@@ -285,4 +273,14 @@ const getFromLocalStorage = function (key, defaultValue) {
   }
 };
 
+// Start Quiz - remove elements, start timer and render question
+const startQuiz = function () {
+  startQuizDiv.remove();
+
+  renderTimer();
+
+  startTimer();
+
+  renderQuestion();
+};
 startQuizButton.addEventListener("click", startQuiz);
